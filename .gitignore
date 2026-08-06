@@ -1,0 +1,13 @@
+# local / scratch — never deploy these
+.DS_Store
+.playwright-mcp/
+*.local.*
+node_modules/
+
+# stray screenshots / images at the repo ROOT are scratch.
+# (real image assets go in /assets and are tracked there)
+/*.png
+/*.jpg
+/*.jpeg
+/*.gif
+/*.webp

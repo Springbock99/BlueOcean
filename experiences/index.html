@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#f8f8f6" />
+
+<!-- pre-paint theme restore — keep this identical across every page -->
+<script>
+(function(){
+  var r = document.documentElement;
+  r.classList.add("js");
+  try{
+    var stored = localStorage.getItem("blueocean-theme");
+    var dark = stored ? stored === "dark"
+                      : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if(dark){
+      r.setAttribute("data-theme","dark");
+      var m = document.querySelector('meta[name="theme-color"]');
+      if(m) m.setAttribute("content","#0a1b2b");
+    }
+  }catch(e){}
+})();
+</script>
+
+<title>Experiences — Blue Ocean Residential</title>
+<meta name="description" content="Beach, boat and fishing days, live music, weddings and special events at Blue Ocean Residential, Mozambique." />
+
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png" />
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Blue Ocean Residential" />
+<meta property="og:title" content="Experiences — Blue Ocean Residential" />
+<meta property="og:description" content="Beachfront experiences, live music and unforgettable events." />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/site.css" />
+<script src="../assets/site.js" defer></script>
+</head>
+<body>
+
+<!-- Everything above the footer sits in .daylight, which carries the
+     colour ramp. It wraps rather than sits on <body> so the ramp is the
+     height of the real page — a short page still gets the whole journey. -->
+<div class="daylight">
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="../" aria-label="Blue Ocean Residential — home">
+      <img src="../assets/emblem.webp" alt="" width="600" height="559" />
+      <span class="brand-text">
+        <span class="brand-name">BLUE OCEAN</span>
+        <span class="brand-sub">Residential Mozambique</span>
+      </span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="../">Home</a>
+      <a href="../accommodations/">Accommodations</a>
+      <a href="../dining/">Dining</a>
+      <a href="./" aria-current="page">Experiences</a>
+      <a href="../contact/">Contact</a>
+    </nav>
+    <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark theme">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="wrap">
+      <p class="label">Experiences</p>
+      <h1>Days worth<br />remembering.</h1>
+      <p class="lede">The beach, the water, the music and the occasions — what
+        there is to do between meals.</p>
+    </div>
+  </section>
+
+  <!-- NOTE: the Experiences page on the old site had no copy on it, only a
+       heading. Everything below is a structure built around the photography —
+       the descriptions are placeholders marked [like this]. Replace them with
+       what you actually offer before publishing. -->
+
+  <section>
+    <div class="wrap">
+      <div class="split">
+        <figure class="media media-wide reveal">
+          <img src="../assets/photos/boardwalk.webp" alt="Timber boardwalk running through coastal dune vegetation towards a thatched pavilion and the sea" width="1200" height="675" loading="lazy" />
+        </figure>
+        <div class="reveal">
+          <p class="label">The beach</p>
+          <h2 style="margin-bottom:24px">Straight down<br />to the water.</h2>
+          <p style="margin-bottom:20px">A boardwalk runs from the houses through
+            the dunes to the beach.</p>
+          <p class="muted">[Describe the beach — how long the walk is, swimming
+            conditions, whether it is patrolled, best time of day.]</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <hr class="rule rule-gap" />
+      <p class="label reveal">On offer</p>
+      <h2 class="reveal" style="margin-bottom:48px">Things to do.</h2>
+
+      <div class="grid grid-3">
+        <article class="tile reveal">
+          <img src="../assets/photos/dining-catch.webp" alt="A morning's catch laid out on the sand" width="768" height="724" loading="lazy" />
+          <div class="tile-body">
+            <h3>Fishing</h3>
+            <p class="muted">[Boat charters, shore fishing, what is running and
+              when, whether tackle is provided, cost.]</p>
+          </div>
+        </article>
+
+        <article class="tile reveal">
+          <img src="../assets/photos/pool-ocean.webp" alt="The pool looking out over the Indian Ocean" width="1400" height="1443" loading="lazy" />
+          <div class="tile-body">
+            <h3>Pool &amp; sundowners</h3>
+            <p class="muted">[Pool hours, the bar, when the sun sets over the
+              water, anything laid on in the evenings.]</p>
+          </div>
+        </article>
+
+        <article class="tile reveal">
+          <img src="../assets/photos/live-music.webp" alt="A musician playing live at the retreat" width="960" height="994" loading="lazy" />
+          <div class="tile-body">
+            <h3>Live music</h3>
+            <p>Live music sets the soundtrack for your stay, whether you are
+              relaxing or dancing. <span class="muted">[Which nights?]</span></p>
+          </div>
+        </article>
+
+        <article class="tile reveal">
+          <img src="../assets/photos/aerial-coast.webp" alt="Aerial view of the coastline and dune forest around the retreat" width="1200" height="899" loading="lazy" />
+          <div class="tile-body">
+            <h3>Exploring</h3>
+            <p class="muted">[Dune walks, nearby villages and markets, day trips,
+              diving or snorkelling if available.]</p>
+          </div>
+        </article>
+
+        <article class="tile reveal">
+          <img src="../assets/photos/garden.webp" alt="Leafy greens growing in the kitchen garden" width="360" height="426" loading="lazy" />
+          <div class="tile-body">
+            <h3>The garden</h3>
+            <p class="muted">[The kitchen garden and what comes out of it — a nice
+              story if guests can visit it.]</p>
+          </div>
+        </article>
+
+        <article class="tile reveal">
+          <img src="../assets/photos/bar.webp" alt="The bar, open to the sea" width="1200" height="900" loading="lazy" />
+          <div class="tile-body">
+            <h3>The bar</h3>
+            <p>Cocktails, great music and the perfect atmosphere to enjoy every
+              moment, from day to night.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- EVENTS ---------- -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <hr class="rule rule-gap" />
+      <div class="split split-reverse">
+        <figure class="media media-wide reveal">
+          <img src="../assets/photos/dining-table.webp" alt="A long table laid for a group under the thatched pavilion" width="960" height="1280" loading="lazy" />
+        </figure>
+        <div class="reveal">
+          <p class="label">Events</p>
+          <h2 style="margin-bottom:24px">Weddings and<br />special occasions.</h2>
+          <p style="margin-bottom:20px">Guests have married here. The pavilion,
+            the pool deck and the beach all take a crowd.</p>
+          <p class="muted" style="margin-bottom:28px">[Add capacity, what a
+            wedding package includes, whether you host conferences or family
+            reunions, and how far ahead to book.]</p>
+          <a class="btn btn-ghost" href="../contact/">Enquire about an event</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <hr class="rule rule-gap" />
+      <blockquote class="quote reveal" style="max-width:56ch">
+        <div class="stars" aria-label="Five out of five stars">★★★★★</div>
+        <p>Our wedding at Blue Ocean Residential was magical, with stunning views
+          and exceptional service that made our day unforgettable. Highly
+          recommend for any special event or getaway.</p>
+        <cite>Guest review</cite>
+      </blockquote>
+    </div>
+  </section>
+
+</main>
+
+</div><!-- /.daylight -->
+
+<footer class="site-footer">
+  <div class="wrap footer-closing reveal">
+    <h2 style="margin-bottom:22px">Plan your days.</h2>
+    <p class="lede">Tell us what you would like to do and we will arrange it before you arrive.</p>
+    <div class="actions">
+      <a class="btn" href="https://api.whatsapp.com/send/?phone=258850627916" target="_blank" rel="noopener">Message us on WhatsApp</a>
+      <a class="btn btn-ghost" href="../contact/">Send an enquiry</a>
+    </div>
+  </div>
+
+  <div class="wrap footer-inner">
+    <a class="footer-brand" href="../" aria-label="Blue Ocean Residential — home">
+      <img src="../assets/emblem.webp" alt="" width="600" height="559" loading="lazy" />
+      <span class="footer-wordmark">
+        <b>BLUE OCEAN</b>
+        <span>Residential Mozambique</span>
+      </span>
+    </a>
+    <div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="../">Home</a>
+        <a href="../accommodations/">Accommodations</a>
+        <a href="../dining/">Dining</a>
+        <a href="./">Experiences</a>
+        <a href="../contact/">Contact</a>
+      </nav>
+      <p class="footer-legal">
+        <a href="mailto:blueoceanmoz@icloud.com">blueoceanmoz@icloud.com</a><br />
+        WhatsApp <a href="https://api.whatsapp.com/send/?phone=258850627916" target="_blank" rel="noopener">+258 850 627 916</a><br />
+        © <span class="year">2026</span> Blue Ocean Residential, Mozambique.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll(".year").forEach(function(el){
+  el.textContent = new Date().getFullYear();
+});
+</script>
+</body>
+</html>

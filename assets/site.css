@@ -1,0 +1,660 @@
+/* ============================================================
+   BLUE OCEAN — Residential Mozambique
+   Vanilla CSS, no build step. Every design decision you are likely
+   to change lives in the :root token block below.
+
+   Palette sampled directly from the logo artwork:
+   navy #021c3f · coral #fdc7b0 · sea #8eb4c7 · paper #f8f7f8
+   ============================================================ */
+
+/* ---------- 1. DESIGN TOKENS (change the whole look here) ---------- */
+:root{
+  color-scheme:light;
+
+  /* surfaces */
+  --bg:#f8f8f6;          /* page — the logo's paper tone   */
+  --panel:#ffffff;       /* cards, raised surfaces         */
+
+  /* text — warmed and deepened so it still holds at the bottom of the
+     ramp, where the ground is apricot rather than paper. Every value
+     here clears 4.5:1 on both #fdfcfa and the ramp's last colour. */
+  --ink:#0d2440;         /* headings — logo navy           */
+  --body:#4a3d33;        /* paragraph text                 */
+  --muted:#6b5443;       /* captions, meta                 */
+
+  /* brand accents */
+  --navy:#143252;        /* primary buttons, strong marks  */
+  --navy-deep:#0a1e35;
+  --coral:#8f3d16;       /* the sunset — labels, details   */
+  --coral-deep:#7a3110;
+  --coral-soft:#fbe7de;  /* tint fills                     */
+  --sea:#8eb4c7;         /* the water                      */
+  --sea-soft:#e4eef4;
+  --sand:#f3ece5;
+
+  /* button colour pair (flips in dark mode) */
+  --btn-bg:var(--navy);
+  --btn-bg-hover:var(--navy-deep);
+  --btn-fg:#ffffff;
+
+  --line:rgba(13,36,64,0.12);
+  --line-2:rgba(13,36,64,0.26);
+  --scrim-rgb:248,248,246;   /* --bg as r,g,b — sticky header blur */
+
+  /* the day's light — see .daylight in section 5b.
+     Cool white at the top of a page, warming all the way down.
+
+     The ramp stops at --w6, an apricot, and NOT at full orange. That is
+     a hard limit, not a taste call: at anything stronger, small secondary
+     text (captions, the star ratings, "Guest review") drops under 4.5:1
+     and no amount of darkening the token fixes it without turning the
+     accent black. The deep orange --w7 and --ember therefore live only
+     in the footer, above which no body copy ever sits. */
+  --w0:#fdfcfa;
+  --w1:#fdf8f1;
+  --w2:#fdefe1;
+  --w3:#fbdfc3;
+  --w4:#f9d2ac;
+  --w5:#f7cca1;
+  --w6:#f6c79a;
+  --w7:#eb9c5c;   /* footer only */
+  --ember:#a8481c; /* footer only — deep enough to meet the photograph */
+
+  /* type */
+  --font-display:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --font-body:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+
+  /* rhythm */
+  --maxw:1140px;
+  --r:14px;
+  --gap:clamp(46px,4.8vw,78px);      /* vertical space between sections   */
+  --gap-sm:clamp(34px,3.6vw,56px);   /* space either side of a divider    */
+  --pad:clamp(20px,5vw,44px);
+  --ease:cubic-bezier(0.22,1,0.36,1);
+}
+
+[data-theme="dark"]{
+  color-scheme:dark;
+  /* Dark is the same day after the sun has gone: warm near-black
+     rather than navy, so it still arrives at the same photograph
+     instead of fighting it. */
+  --bg:#141110;
+  --panel:#1f1916;
+  --ink:#f7ece4;
+  --body:#cdb6a6;
+  --muted:#c9b1a0;
+  --navy:#f7ece4;
+  --navy-deep:#ffffff;
+  --coral:#efb197;
+  --coral-deep:#f6c9b5;
+  --coral-soft:rgba(233,161,132,0.14);
+  --sea:#c99878;
+  --sea-soft:rgba(233,161,132,0.10);
+  --sand:rgba(243,229,219,0.06);
+  --btn-bg:var(--coral);
+  --btn-bg-hover:var(--coral-deep);
+  --btn-fg:#241a14;
+  --line:rgba(247,236,228,0.14);
+  --line-2:rgba(247,236,228,0.30);
+  --scrim-rgb:20,17,16;
+
+  --w0:#141110;
+  --w1:#181412;
+  --w2:#1f1713;
+  --w3:#291b13;
+  --w4:#372114;
+  --w5:#4a2815;
+  --w6:#5e2f16;
+  --w7:#7a3a19;
+  --ember:#8f3d18;
+}
+
+/* ---------- 2. RESET ---------- */
+*,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body{
+  background:var(--bg);
+  color:var(--body);
+  font-family:var(--font-body);
+  font-size:17px;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  transition:background .3s var(--ease), color .3s var(--ease);
+}
+img,svg{ display:block; max-width:100%; height:auto; }
+a{ color:inherit; text-decoration:none; }
+button{ font:inherit; color:inherit; background:none; border:none; cursor:pointer; }
+:focus-visible{ outline:2px solid var(--coral); outline-offset:3px; border-radius:4px; }
+
+@media (prefers-reduced-motion:reduce){
+  html{ scroll-behavior:auto; }
+  *,*::before,*::after{ animation-duration:.01ms!important; transition-duration:.01ms!important; }
+}
+
+/* ---------- 3. TYPE ----------
+   The logo wordmark is a high-contrast serif set very wide. Headings echo
+   that: light weight, generous letter-spacing, tight leading. */
+h1,h2,h3{
+  font-family:var(--font-display);
+  color:var(--ink);
+  font-weight:300;
+  line-height:1.12;
+}
+h1{ font-size:clamp(42px,6.4vw,76px); letter-spacing:0.015em; }
+h2{ font-size:clamp(31px,4.2vw,48px); letter-spacing:0.012em; }
+h3{ font-size:clamp(21px,2.2vw,26px); font-weight:400; line-height:1.3; }
+
+/* the tracked-out caps label — lifted straight from "RESIDENTIAL MOZAMBIQUE" */
+.label{
+  font-family:var(--font-body);
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:0.28em;
+  text-transform:uppercase;
+  color:var(--coral);
+  margin-bottom:20px;
+}
+.label-navy{ color:var(--muted); }
+.lede{ font-size:clamp(18px,1.9vw,21px); line-height:1.65; max-width:60ch; }
+.muted{ color:var(--muted); }
+strong{ color:var(--ink); font-weight:500; }
+
+/* ---------- 4. LAYOUT ---------- */
+.wrap{ width:100%; max-width:var(--maxw); margin-inline:auto; padding-inline:var(--pad); }
+section{ padding-block:var(--gap); }
+.rule{ height:1px; background:var(--line); border:0; }
+
+/* a divider that opens a new section: it already sits below one section's
+   bottom padding, so its own trailing space is deliberately smaller —
+   otherwise the two stack up and leave a hole. */
+.rule-gap{ margin-bottom:var(--gap-sm); }
+
+/* the first section after a hero does not need a full gap on top, the hero's
+   own bottom padding is already doing that work */
+.hero + section,
+.hero-photo + section{ padding-top:var(--gap-sm); }
+
+.grid{ display:grid; gap:30px; }
+@media (min-width:760px){
+  .grid-2{ grid-template-columns:repeat(2,1fr); }
+  .grid-3{ grid-template-columns:repeat(3,1fr); }
+  .grid-4{ grid-template-columns:repeat(2,1fr); }   /* 2-up on tablet */
+}
+@media (min-width:1000px){
+  .grid-4{ grid-template-columns:repeat(4,1fr); gap:22px; }  /* one line */
+}
+
+/* ---------- 5. HEADER / NAV ---------- */
+/* ---------- 5b. THE DAY'S LIGHT ----------
+   .daylight wraps the header and main — everything above the footer.
+   Putting the ramp there rather than on <body> means it stretches to
+   whatever height the page actually is, so a short page like Contact
+   gets the whole journey instead of the top third of it.
+
+   The ramp stops at --w6, still light. All of the darkening happens
+   inside the footer, where there is no body copy — which is why no
+   text on this site ever has to change colour partway down a page. */
+.daylight{
+  background:linear-gradient(180deg,
+    var(--w0)  0%,
+    var(--w1) 20%,
+    var(--w2) 39%,
+    var(--w3) 56%,
+    var(--w4) 71%,
+    var(--w5) 85%,
+    var(--w6) 100%);
+}
+
+.site-header{
+  position:sticky; top:0; z-index:50;
+  background:rgba(var(--scrim-rgb),0.86);
+  backdrop-filter:saturate(180%) blur(14px);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.nav{ display:flex; align-items:center; gap:20px; height:76px; }
+.brand{ display:flex; align-items:center; gap:12px; margin-right:auto; }
+.brand img{ width:44px; height:auto; }
+.brand-text{ display:flex; flex-direction:column; line-height:1; }
+.brand-name{
+  font-family:var(--font-display); font-weight:500;
+  font-size:21px; letter-spacing:0.20em; color:var(--ink);
+}
+.brand-sub{
+  font-size:8.5px; font-weight:500; letter-spacing:0.26em;
+  text-transform:uppercase; color:var(--muted); margin-top:4px;
+}
+.nav-links{ display:flex; gap:30px; }
+.nav-links a{
+  font-size:12px; font-weight:500; letter-spacing:0.14em; text-transform:uppercase;
+  color:var(--body); padding-block:6px; border-bottom:1px solid transparent;
+  transition:color .2s var(--ease), border-color .2s var(--ease);
+}
+.nav-links a:hover{ color:var(--ink); }
+.nav-links a[aria-current="page"]{ color:var(--ink); border-bottom-color:var(--coral); }
+
+.theme-toggle{
+  width:38px; height:38px; display:grid; place-items:center;
+  border:1px solid var(--line); border-radius:50%;
+  color:var(--body); transition:border-color .2s var(--ease), color .2s var(--ease);
+}
+.theme-toggle:hover{ border-color:var(--line-2); color:var(--ink); }
+.theme-toggle svg{ width:17px; height:17px; }
+[data-theme="dark"] .icon-moon,
+:root:not([data-theme="dark"]) .icon-sun{ display:none; }
+
+/* five nav items is too many for a phone bar, so below 900px the links drop
+   to their own row and scroll sideways rather than wrapping or being hidden
+   behind a JS menu. */
+@media (max-width:900px){
+  .nav{ flex-wrap:wrap; height:auto; padding-block:12px; row-gap:4px; }
+  .brand img{ width:36px; }
+  .brand-name{ font-size:18px; letter-spacing:0.16em; }
+  .brand-sub{ display:none; }
+  .nav-links{
+    order:3; width:100%; gap:22px;
+    overflow-x:auto; scrollbar-width:none; padding-bottom:2px;
+  }
+  .nav-links::-webkit-scrollbar{ display:none; }
+  .nav-links a{ font-size:11px; letter-spacing:0.1em; white-space:nowrap; }
+}
+
+/* ---------- 6. HERO ----------
+   The wash behind the inner-page hero repeats the logo's sunset: coral sky
+   above, sea below, dissolving into paper. */
+.hero{
+  position:relative;
+  padding-block:clamp(44px,5.5vw,72px) clamp(40px,4.6vw,60px);
+  background:linear-gradient(180deg,
+    var(--coral-soft) 0%,
+    var(--sea-soft) 46%,
+    var(--bg) 100%);
+}
+.hero-grid{ display:grid; gap:44px; align-items:center; }
+@media (min-width:900px){
+  .hero-grid{ grid-template-columns:1.05fr 0.95fr; gap:56px; }
+}
+.hero h1{ margin-bottom:26px; }
+.hero .lede{ margin-bottom:38px; }
+.hero-art{ justify-self:center; width:min(100%,480px); }
+
+/* photographic hero — home page */
+.hero-photo{
+  position:relative; isolation:isolate;
+  min-height:min(84vh,720px);
+  display:flex; align-items:flex-end;
+  padding-block:clamp(64px,10vw,110px);
+  overflow:hidden;
+}
+.hero-photo > img{
+  position:absolute; inset:0; z-index:-2;
+  width:100%; height:100%; object-fit:cover;
+}
+.hero-photo::after{                 /* legibility scrim */
+  content:""; position:absolute; inset:0; z-index:-1;
+  background:linear-gradient(180deg,
+    rgba(6,20,36,0.34) 0%,
+    rgba(6,20,36,0.10) 38%,
+    rgba(6,20,36,0.72) 100%);
+}
+.hero-photo .label{ color:#f6cdb9; }
+.hero-photo h1,
+.hero-photo .lede{ color:#fff; }
+.hero-photo h1{ margin-bottom:22px; max-width:16ch; }
+.hero-photo .lede{ margin-bottom:36px; color:rgba(255,255,255,0.90); }
+.hero-photo .btn-ghost{ color:#fff; border-color:rgba(255,255,255,0.55); }
+.hero-photo .btn-ghost:hover{ background:rgba(255,255,255,0.14); border-color:#fff; }
+
+/* ---------- 6b. MEDIA ---------- */
+figure{ margin:0; }
+.media{
+  border-radius:var(--r); overflow:hidden;
+  background:var(--sea-soft);
+}
+.media img{ width:100%; height:100%; object-fit:cover; }
+.media-tall img{ aspect-ratio:3/4; }
+.media-wide img{ aspect-ratio:16/9; }
+.media-square img{ aspect-ratio:1/1; }
+figcaption{
+  margin-top:12px; font-size:13px; letter-spacing:0.1em;
+  text-transform:uppercase; color:var(--muted);
+}
+
+/* alternating image + text */
+.split{ display:grid; gap:36px; align-items:center; }
+@media (min-width:880px){
+  .split{ grid-template-columns:1fr 1fr; gap:56px; }
+  .split-reverse > :first-child{ order:2; }
+}
+
+/* gallery grid — mixed heights, no library needed */
+.gallery{ display:grid; gap:16px; grid-template-columns:repeat(2,1fr); }
+@media (min-width:760px){ .gallery{ grid-template-columns:repeat(3,1fr); gap:20px; } }
+.gallery .media img{ aspect-ratio:1/1; }
+.gallery .span-2{ grid-column:span 2; }
+.gallery .span-2 img{ aspect-ratio:16/10; }
+
+/* image card — photo above copy */
+.tile{
+  background:var(--panel); border:1px solid var(--line);
+  border-radius:var(--r); overflow:hidden;
+  transition:border-color .25s var(--ease), transform .25s var(--ease);
+}
+.tile:hover{ border-color:var(--line-2); transform:translateY(-2px); }
+.tile img{ width:100%; aspect-ratio:4/3; object-fit:cover; }
+.tile-body{ padding:26px 28px 30px; }
+.tile-body h3{ margin-bottom:10px; }
+
+/* ---------- 6c. THE MOVING LINE ----------
+   One line of tiles sweeping steadily left to right, forever.
+
+   The lane slides by exactly the width of one set of tiles (--ring-shift,
+   measured by site.js), so the moment the second set reaches where the
+   first started, the loop restarts unseen.
+
+   Tile width + margin-right is what makes that measurement exact — do not
+   swap the margin for `gap`, which is not part of a tile's own width. */
+.ring{
+  --ring-tile:clamp(232px,25vw,310px);
+  --ring-gap:24px;
+  position:relative;
+  margin-top:48px;
+  overflow:hidden;
+}
+.ring-lane{
+  overflow:hidden;
+  /* dissolve the ends so tiles are never cut off square */
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+  -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat;
+}
+.ring-track{ display:flex; width:max-content; }
+.ring-track > .tile{
+  flex:0 0 auto;
+  width:var(--ring-tile);
+  margin-right:var(--ring-gap);
+}
+
+/* The reviews reuse the same line. Only width and spacing are set here — the
+   quotes keep the colours, the coral hairline and the type they already had. */
+.ring-quotes{ --ring-tile:clamp(300px,32vw,420px); --ring-gap:56px; margin-top:40px; }
+.ring-track > .quote{
+  flex:0 0 auto;
+  width:var(--ring-tile);
+  margin-right:var(--ring-gap);
+  display:flex; flex-direction:column;
+}
+.ring-track > .quote cite{ margin-top:auto; }
+/* Motion is added only once site.js has cloned the tiles — animating a
+   single set would slide it off the screen and snap back. */
+.ring.is-ready .ring-track{ will-change:transform; }
+.ring.is-ready .ring-near .ring-track{ animation:ring-near 60s linear infinite; }
+@keyframes ring-near{
+  from{ transform:translate3d(var(--ring-shift,0),0,0); }
+  to  { transform:translate3d(0,0,0); }
+}
+
+/* stop while it is off screen, and while someone is looking at a tile */
+.ring.is-paused .ring-track,
+.ring:hover .ring-track,
+.ring:focus-within .ring-track{ animation-play-state:paused; }
+
+/* Reduced motion: one still row you can swipe. The clones would just read
+   as repeats, so they go. */
+@media (prefers-reduced-motion:reduce){
+  .ring{ height:auto; overflow:visible; }
+  .ring-lane{
+    position:static; overflow-x:auto; padding-bottom:6px;
+    -webkit-mask-image:none; mask-image:none;
+  }
+  .ring-dup{ display:none; }
+  .ring-track{ animation:none!important; transform:none!important; }
+}
+
+/* testimonial */
+.quote{
+  border-left:2px solid var(--coral);
+  padding-left:26px;
+}
+.quote p{
+  font-family:var(--font-display); font-size:clamp(20px,2.2vw,25px);
+  line-height:1.45; color:var(--ink); margin-bottom:16px;
+}
+.quote cite{
+  font-style:normal; font-size:11px; letter-spacing:0.2em;
+  text-transform:uppercase; color:var(--muted);
+}
+.stars{ color:var(--coral); letter-spacing:0.18em; font-size:13px; margin-bottom:14px; }
+
+/* ---------- 7. COMPONENTS ---------- */
+.actions{ display:flex; gap:14px; flex-wrap:wrap; }
+
+.btn{
+  display:inline-flex; align-items:center; gap:9px;
+  padding:14px 30px; border-radius:999px;
+  background:var(--btn-bg); color:var(--btn-fg);
+  font-size:12px; font-weight:500; letter-spacing:0.14em; text-transform:uppercase;
+  transition:background .2s var(--ease), transform .2s var(--ease);
+}
+.btn:hover{ background:var(--btn-bg-hover); transform:translateY(-1px); }
+
+.btn-ghost{
+  background:none; color:var(--ink);
+  border:1px solid var(--line-2);
+}
+.btn-ghost:hover{ background:var(--coral-soft); border-color:var(--coral); }
+
+.card{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:var(--r);
+  padding:32px;
+  transition:border-color .25s var(--ease), transform .25s var(--ease);
+}
+.card:hover{ border-color:var(--line-2); transform:translateY(-2px); }
+.card h3{ margin-bottom:12px; }
+
+/* numbered index rows — residence types, principles, process steps */
+.rows{ border-top:1px solid var(--line); }
+.row{
+  display:grid; grid-template-columns:56px 1fr; gap:20px;
+  padding-block:30px; border-bottom:1px solid var(--line);
+}
+.row-num{
+  font-size:11px; letter-spacing:0.2em; color:var(--coral);
+  padding-top:9px; font-weight:500;
+}
+.row h3{ margin-bottom:10px; }
+@media (min-width:880px){
+  .row{ grid-template-columns:56px 320px 1fr; align-items:start; }
+  .row-body{ padding-top:5px; }
+}
+
+/* fact strip — plot sizes, bedrooms, distances */
+.facts{ display:flex; flex-wrap:wrap; gap:12px 44px; }
+.fact-val{ font-family:var(--font-display); font-size:38px; color:var(--ink); line-height:1.1; }
+.fact-key{
+  font-size:11px; letter-spacing:0.18em; text-transform:uppercase;
+  color:var(--muted); margin-top:6px;
+}
+
+/* event listing */
+.event{
+  display:grid; gap:8px 26px;
+  padding-block:30px; border-bottom:1px solid var(--line);
+}
+.event-date{
+  font-size:11px; font-weight:500; letter-spacing:0.18em;
+  text-transform:uppercase; color:var(--coral);
+}
+.event-meta{ font-size:15px; color:var(--muted); }
+@media (min-width:780px){
+  .event{ grid-template-columns:190px 1fr auto; align-items:start; }
+  .event-date{ padding-top:6px; }
+}
+
+/* forms */
+.field{ display:block; margin-bottom:22px; }
+.field span{
+  display:block; margin-bottom:9px;
+  font-size:11px; font-weight:500; letter-spacing:0.18em;
+  text-transform:uppercase; color:var(--muted);
+}
+.field input,.field textarea,.field select{
+  width:100%; padding:14px 16px;
+  font:inherit; font-size:16px; color:var(--ink);
+  background:var(--panel);
+  border:1px solid var(--line-2); border-radius:10px;
+  transition:border-color .2s var(--ease);
+}
+.field input:focus,.field textarea:focus,.field select:focus{
+  outline:none; border-color:var(--coral);
+}
+.field textarea{ min-height:150px; resize:vertical; }
+
+/* ---------- 8. THE ARRIVAL (footer) ----------
+   The page has been warming all the way down and this is where it
+   gets to. The photograph's own top edge is a dark blue cloud, so
+   rather than blend light orange into it, the scrim below carries
+   the ramp on past orange into --ember first — two dark tones meet,
+   and the dissolve only has a short distance to cover.
+
+   The first stop is exactly --w6, the colour .daylight ends on, so
+   the seam between page and footer cannot be seen. */
+.site-footer{
+  position:relative;
+  min-height:clamp(560px,78vh,820px);
+  display:flex; flex-direction:column; justify-content:flex-end;
+  background:url("photos/sunset-pool.webp") center/cover no-repeat;
+  isolation:isolate;
+  color:#fff;
+}
+.site-footer::before{
+  content:""; position:absolute; inset:0; z-index:0;
+  background:
+    /* This is where the day actually sets. The page hands over on --w6,
+       so the seam cannot be seen; the strong orange and the ember both
+       live here, below the last line of text on the page. */
+    linear-gradient(180deg,
+      var(--w6) 0%,
+      var(--w7) 9%,
+      var(--ember) 21%,
+      rgba(168,72,28,0.70) 29%,
+      rgba(168,72,28,0.36) 37%,
+      rgba(168,72,28,0.12) 44%,
+      rgba(168,72,28,0) 51%),
+    /* and a little shade at the foot, so the small print holds */
+    linear-gradient(0deg,
+      rgba(18,11,6,0.86) 0%,
+      rgba(18,11,6,0.44) 24%,
+      rgba(18,11,6,0) 52%);
+}
+[data-theme="dark"] .site-footer::before{
+  background:
+    linear-gradient(180deg,
+      var(--w6) 0%,
+      var(--w7) 9%,
+      var(--ember) 21%,
+      rgba(143,61,24,0.70) 29%,
+      rgba(143,61,24,0.36) 37%,
+      rgba(143,61,24,0.12) 44%,
+      rgba(143,61,24,0) 51%),
+    linear-gradient(0deg,
+      rgba(12,8,5,0.86) 0%,
+      rgba(12,8,5,0.34) 26%,
+      rgba(12,8,5,0) 50%);
+}
+
+/* the closing words, inside the picture */
+.footer-closing{
+  position:relative; z-index:2;
+  text-align:center;
+  padding-block:clamp(46px,6vw,88px);
+}
+.footer-closing h2{
+  color:#fff; margin-bottom:20px;
+  text-shadow:0 2px 26px rgba(30,12,4,0.6);
+}
+.footer-closing .label{ color:#ffd9b8; text-shadow:0 1px 14px rgba(30,12,4,0.55); }
+.footer-closing .lede{
+  color:rgba(255,255,255,0.95); max-width:46ch; margin:0 auto 36px;
+  text-shadow:0 1px 16px rgba(30,12,4,0.6);
+}
+.footer-closing .actions{ justify-content:center; }
+.footer-closing .btn{ background:#fff; color:#3d2314; }
+.footer-closing .btn:hover{ background:#ffefe2; }
+.footer-closing .btn-ghost{
+  background:rgba(255,255,255,0.12); color:#fff; border-color:rgba(255,255,255,0.6);
+  -webkit-backdrop-filter:blur(3px); backdrop-filter:blur(3px);
+}
+.footer-closing .btn-ghost:hover{ background:rgba(255,255,255,0.24); }
+/* a soft pool of shade under the words: enough for white type to hold
+   on a bright sky, not enough to read as a panel */
+.footer-closing::before{
+  content:""; position:absolute; left:50%; top:50%;
+  transform:translate(-50%,-50%);
+  width:min(1040px,96%); height:118%; z-index:-1; pointer-events:none;
+  background:radial-gradient(56% 50% at 50% 50%,
+    rgba(26,12,4,0.48), rgba(26,12,4,0.19) 60%, rgba(26,12,4,0) 79%);
+}
+
+.footer-inner{
+  position:relative; z-index:2;
+  display:grid; gap:26px; align-items:end;
+  padding-block:clamp(30px,3.4vw,50px);
+  font-size:15px;
+}
+@media (min-width:760px){
+  .footer-inner{ grid-template-columns:auto 1fr; gap:44px; }
+}
+/* the emblem beside the wordmark, the way the header carries it */
+.footer-brand{ display:flex; align-items:center; gap:16px; }
+.footer-brand img{ width:74px; height:auto; flex:0 0 auto; }
+.footer-wordmark{ display:flex; flex-direction:column; line-height:1.1; }
+.footer-wordmark b{
+  font-family:var(--font-display); font-weight:400;
+  font-size:21px; letter-spacing:0.17em; color:#fff;
+}
+.footer-wordmark span{
+  font-size:9.5px; letter-spacing:0.24em; text-transform:uppercase;
+  color:rgba(255,255,255,0.82); margin-top:5px;
+}
+.footer-nav{ display:flex; flex-wrap:wrap; gap:14px 30px; }
+.footer-nav a{
+  font-size:12px; letter-spacing:0.14em; text-transform:uppercase;
+  color:rgba(255,255,255,0.88);
+}
+.footer-nav a:hover{ color:#fff; }
+.footer-legal{ margin-top:20px; font-size:13px; color:rgba(255,255,255,0.86); }
+.footer-legal a{ color:#fff; border-bottom:1px solid rgba(255,255,255,0.38); }
+.footer-legal a:hover{ border-bottom-color:#fff; }
+
+@media (max-width:640px){
+  .site-footer{ background-position:62% center; }
+  .footer-brand img{ width:60px; }
+}
+
+/* ---------- 9. SCROLL REVEAL (progressive — see site.js) ----------
+   Only hides content when the .js class is present on <html>, so the page
+   stays fully readable if JS is off or fails to load.
+
+   translate3d rather than translateY keeps the whole thing on the compositor,
+   so it never triggers layout while scrolling. The observer in site.js starts
+   the animation slightly *before* the element reaches the viewport, which
+   gives lazy images time to decode — that early start is what stops the
+   fade-in from looking like a stutter.
+
+   No blanket will-change here: translate3d already keeps this on the
+   compositor, and will-change would promote every pending element to its own
+   layer at once, costing more than it saves. */
+.js .reveal{
+  opacity:0; transform:translate3d(0,14px,0);
+  transition:opacity .75s var(--ease), transform .75s var(--ease);
+}
+.js .reveal.in{ opacity:1; transform:none; }
+
+/* lazy images fade up as they decode instead of snapping in.
+   The hiding class is added by JS, never by CSS alone, so a script failure
+   can never leave an image permanently invisible. */
+.img-fade{ opacity:0; transition:opacity .55s var(--ease); }
+.img-fade.loaded{ opacity:1; }

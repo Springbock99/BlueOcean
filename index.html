@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#f8f8f6" />
+
+<!-- pre-paint theme restore — must run before any CSS so there is no flash
+     of the wrong theme. Keep this inline and identical in every page. -->
+<script>
+(function(){
+  var r = document.documentElement;
+  r.classList.add("js");
+  try{
+    var stored = localStorage.getItem("blueocean-theme");
+    var dark = stored ? stored === "dark"
+                      : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if(dark){
+      r.setAttribute("data-theme","dark");
+      var m = document.querySelector('meta[name="theme-color"]');
+      if(m) m.setAttribute("content","#0a1b2b");
+    }
+  }catch(e){}
+})();
+</script>
+
+<title>Blue Ocean Residential — Luxury Seaside Retreat, Mozambique</title>
+<meta name="description" content="Modern beachfront accommodation with ocean views, local and international cuisine, bars and live music. Blue Ocean Residential — a seaside haven in Mozambique for family holidays, getaways and special events." />
+
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Blue Ocean Residential" />
+<meta property="og:title" content="Blue Ocean Residential — Luxury Seaside Retreat, Mozambique" />
+<meta property="og:description" content="A seaside haven with exquisite dining and amenities." />
+<meta name="twitter:card" content="summary_large_image" />
+<!-- og:url and og:image need absolute URLs — uncomment once the domain points here.
+<meta property="og:url"   content="https://blueoceanmoz.site/" />
+<meta property="og:image" content="https://blueoceanmoz.site/assets/photos/hero-pavilion.webp" /> -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/site.css" />
+<script src="assets/site.js" defer></script>
+</head>
+<body>
+
+<!-- Everything above the footer sits in .daylight, which carries the
+     colour ramp. It wraps rather than sits on <body> so the ramp is the
+     height of the real page — a short page still gets the whole journey. -->
+<div class="daylight">
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="./" aria-label="Blue Ocean Residential — home">
+      <img src="assets/emblem.webp" alt="" width="600" height="559" />
+      <span class="brand-text">
+        <span class="brand-name">BLUE OCEAN</span>
+        <span class="brand-sub">Residential Mozambique</span>
+      </span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="./" aria-current="page">Home</a>
+      <a href="accommodations/">Accommodations</a>
+      <a href="dining/">Dining</a>
+      <a href="experiences/">Experiences</a>
+      <a href="contact/">Contact</a>
+    </nav>
+    <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark theme">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!-- ---------- HERO ---------- -->
+  <section class="hero-photo">
+    <img src="assets/photos/hero-pavilion.webp" alt="The thatched terrace at Blue Ocean Residential, looking out across the dunes to the beach and the Indian Ocean" width="1983" height="793" fetchpriority="high" />
+    <div class="wrap">
+      <p class="label">Residential · Mozambique</p>
+      <h1>A luxury seaside retreat awaits you.</h1>
+      <p class="lede">Exceptional hospitality, exclusive services and breathtaking
+        ocean views — for family holidays, quiet getaways and occasions worth
+        travelling for.</p>
+      <div class="actions">
+        <a class="btn" href="https://api.whatsapp.com/send/?phone=258850627916" target="_blank" rel="noopener">Book on WhatsApp</a>
+        <a class="btn btn-ghost" href="accommodations/">See the rooms</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- INTRO ---------- -->
+  <section>
+    <div class="wrap">
+      <div class="split">
+        <div class="reveal">
+          <p class="label">Welcome</p>
+          <h2 style="margin-bottom:24px">Experience luxury at Blue Ocean Residential.</h2>
+          <p style="margin-bottom:20px">Discover modern accommodation, restaurants,
+            bars and unforgettable beachfront experiences at your ultimate luxury
+            beachfront retreat.</p>
+          <p>A perfect getaway for any occasion — family holidays, romantic
+            escapes and special events, all within sight and sound of the ocean.</p>
+        </div>
+        <figure class="media media-wide reveal">
+          <img src="assets/photos/aerial-estate.webp" alt="Aerial view of Blue Ocean Residential set among coastal dunes above the beach" width="1280" height="959" loading="lazy" />
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- THE RETREAT (one line of four) ---------- -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <hr class="rule rule-gap" />
+      <p class="label reveal">What is here</p>
+      <h2 class="reveal" style="margin-bottom:0">The retreat.</h2>
+    </div>
+
+    <!-- The line runs full width, so it sits outside .wrap.
+         This holds the ONLY copy of the tiles; site.js clones them until the
+         lane is wider than the screen. With JavaScript off you get the tiles
+         standing still — which is a fine page. -->
+    <div class="ring reveal">
+      <div class="ring-lane ring-near">
+        <div class="ring-track">
+          <article class="tile">
+            <img src="assets/photos/room-living.webp" alt="Open-plan living and dining area opening onto a terrace with ocean views" width="570" height="414" loading="lazy" />
+            <div class="tile-body">
+              <h3>Ocean view rooms</h3>
+              <p>Luxury suites and executive rooms, all designed for comfort, style
+                and stunning views.</p>
+            </div>
+          </article>
+
+          <article class="tile">
+            <img src="assets/photos/dining-table.webp" alt="A long table laid with seafood and shared plates under the thatched dining pavilion" width="960" height="1280" loading="lazy" />
+            <div class="tile-body">
+              <h3>Dine with a view</h3>
+              <p>Unforgettable meals overlooking the pool and the ocean, from sunrise
+                to sunset.</p>
+            </div>
+          </article>
+
+          <article class="tile">
+            <img src="assets/photos/bar.webp" alt="The bar at Blue Ocean Residential, open to the sea" width="1200" height="900" loading="lazy" />
+            <div class="tile-body">
+              <h3>Cheers to the moment</h3>
+              <p>Cocktails, great music and the perfect atmosphere to enjoy every
+                moment, from day to night.</p>
+            </div>
+          </article>
+
+          <article class="tile">
+            <img src="assets/photos/live-music.webp" alt="A musician playing live at Blue Ocean Residential" width="960" height="994" loading="lazy" />
+            <div class="tile-body">
+              <h3>Music that inspires</h3>
+              <p>Live music sets the soundtrack for your stay, whether you are
+                relaxing or dancing.</p>
+            </div>
+          </article>
+
+          <!-- MOCK — placeholder copy, replace before publishing -->
+          <article class="tile">
+            <img src="assets/photos/pool-ocean.webp" alt="The pool looking out over the Indian Ocean" width="1400" height="1443" loading="lazy" />
+            <div class="tile-body">
+              <h3>Pool &amp; sundowners</h3>
+              <p class="muted">[Mock — pool hours, the bar, and what happens as the sun goes down.]</p>
+            </div>
+          </article>
+
+          <!-- MOCK — placeholder copy, replace before publishing -->
+          <article class="tile">
+            <img src="assets/photos/boardwalk.webp" alt="Timber boardwalk running through the dunes towards the sea" width="1200" height="675" loading="lazy" />
+            <div class="tile-body">
+              <h3>Straight to the beach</h3>
+              <p class="muted">[Mock — the walk from the houses through the dunes to the sand.]</p>
+            </div>
+          </article>
+
+          <!-- MOCK — placeholder copy, replace before publishing -->
+          <article class="tile">
+            <img src="assets/photos/dining-lobster.webp" alt="Freshly landed crayfish prepared in the kitchen" width="960" height="1280" loading="lazy" />
+            <div class="tile-body">
+              <h3>Straight off the boat</h3>
+              <p class="muted">[Mock — the catch, and how quickly it reaches the table.]</p>
+            </div>
+          </article>
+
+          <!-- MOCK — placeholder copy, replace before publishing -->
+          <article class="tile">
+            <img src="assets/photos/veranda.webp" alt="Covered veranda with a dining table looking over the lawn" width="1197" height="673" loading="lazy" />
+            <div class="tile-body">
+              <h3>Somewhere to sit</h3>
+              <p class="muted">[Mock — verandas, shade, and the long slow afternoons.]</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- HOUSES ---------- -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <hr class="rule rule-gap" />
+      <div class="split split-reverse">
+        <figure class="media media-wide reveal">
+          <img src="assets/photos/exterior-terrace.webp" alt="A row of houses with a shared terrace looking out over the coast" width="1200" height="675" loading="lazy" />
+        </figure>
+        <div class="reveal">
+          <p class="label">Houses</p>
+          <h2 style="margin-bottom:24px">Room to spread out.</h2>
+          <p style="margin-bottom:28px">Comfortable homes with spacious areas,
+            essential amenities and beautiful natural views — perfect for families,
+            groups, or anyone seeking relaxation.</p>
+          <a class="btn btn-ghost" href="accommodations/">Accommodation</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- FOOD ---------- -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <hr class="rule rule-gap" />
+      <div class="split">
+        <figure class="media media-wide reveal">
+          <img src="assets/photos/dining-lobster.webp" alt="Freshly landed crayfish prepared in the kitchen" width="960" height="1280" loading="lazy" />
+        </figure>
+        <div class="reveal">
+          <p class="label">Food</p>
+          <h2 style="margin-bottom:24px">Memorable flavours for your stay.</h2>
+          <p style="margin-bottom:28px">Fresh local ingredients and a mix of
+            Mozambican and international dishes make for a tasty, memorable dining
+            experience — from breakfast and light lunches to special dinners,
+            served in a warm atmosphere.</p>
+          <a class="btn btn-ghost" href="dining/">Dining</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- GUEST REVIEWS ----------
+       Same moving line as the retreat, but slower — reviews are read, not
+       glanced at. data-speed is pixels per second; the retreat runs at 26.
+
+       !! The first two are the real reviews from the old site. The four marked
+       "Sample review" are INVENTED placeholders, here only to fill the line out
+       while the design is being worked on. Replace them with real reviews —
+       publishing made-up testimonials misleads customers and is illegal in a
+       lot of places.
+
+       This holds the ONLY copy of the quotes; site.js clones them until the
+       lane is wider than the screen. With JavaScript off they sit still. -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <hr class="rule rule-gap" />
+      <p class="label reveal">Guest reviews</p>
+      <h2 class="reveal" style="margin-bottom:0">What our guests say.</h2>
+    </div>
+
+    <div class="ring ring-quotes reveal" data-speed="15">
+      <div class="ring-lane ring-near">
+        <div class="ring-track">
+          <blockquote class="quote">
+            <div class="stars" aria-label="Five out of five stars">★★★★★</div>
+            <p>The ocean views were breathtaking, and the service was impeccable throughout our stay.</p>
+            <cite>Guest review</cite>
+          </blockquote>
+
+          <blockquote class="quote">
+            <div class="stars" aria-label="Five out of five stars">★★★★★</div>
+            <p>Our wedding at Blue Ocean Residential was magical, with stunning views and exceptional service that made our day unforgettable. Highly recommend for any special event or getaway.</p>
+            <cite>Guest review</cite>
+          </blockquote>
+
+          <!-- SAMPLE — invented, replace before publishing -->
+          <blockquote class="quote">
+            <div class="stars" aria-label="Five out of five stars">★★★★★</div>
+            <p>We came for four nights and stayed for seven. The house was spotless, the staff could not have been kinder, and the beach was our own most mornings.</p>
+            <cite>Sample review</cite>
+          </blockquote>
+
+          <!-- SAMPLE — invented, replace before publishing -->
+          <blockquote class="quote">
+            <div class="stars" aria-label="Five out of five stars">★★★★★</div>
+            <p>Best seafood we have eaten anywhere. The crayfish came off the boat that afternoon and was on the table by seven.</p>
+            <cite>Sample review</cite>
+          </blockquote>
+
+          <!-- SAMPLE — invented, replace before publishing -->
+          <blockquote class="quote">
+            <div class="stars" aria-label="Five out of five stars">★★★★★</div>
+            <p>Travelled with two small children and it was effortless — space to run around, a pool they never wanted to leave, and food that suited everyone.</p>
+            <cite>Sample review</cite>
+          </blockquote>
+
+          <!-- SAMPLE — invented, replace before publishing -->
+          <blockquote class="quote">
+            <div class="stars" aria-label="Five out of five stars">★★★★★</div>
+            <p>Quiet, unhurried and genuinely beautiful. We spent every evening on the deck watching the sun go down over the water.</p>
+            <cite>Sample review</cite>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+</div><!-- /.daylight -->
+
+<!-- The closing words now live inside the photograph rather than on the
+     band above it — this is where the page has been heading all along. -->
+<footer class="site-footer">
+  <div class="wrap footer-closing reveal">
+    <p class="label">Come and stay</p>
+    <h2 style="margin-bottom:22px">The day ends here.</h2>
+    <p class="lede">Message us on WhatsApp or send an email and we will come back to
+      you with availability.</p>
+    <div class="actions">
+      <a class="btn" href="https://api.whatsapp.com/send/?phone=258850627916" target="_blank" rel="noopener">Book on WhatsApp</a>
+      <a class="btn btn-ghost" href="contact/">Contact us</a>
+    </div>
+  </div>
+
+  <div class="wrap footer-inner">
+    <a class="footer-brand" href="./" aria-label="Blue Ocean Residential — home">
+      <img src="assets/emblem.webp" alt="" width="600" height="559" loading="lazy" />
+      <span class="footer-wordmark">
+        <b>BLUE OCEAN</b>
+        <span>Residential Mozambique</span>
+      </span>
+    </a>
+    <div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="./">Home</a>
+        <a href="accommodations/">Accommodations</a>
+        <a href="dining/">Dining</a>
+        <a href="experiences/">Experiences</a>
+        <a href="contact/">Contact</a>
+      </nav>
+      <p class="footer-legal">
+        <a href="mailto:blueoceanmoz@icloud.com">blueoceanmoz@icloud.com</a><br />
+        WhatsApp <a href="https://api.whatsapp.com/send/?phone=258850627916" target="_blank" rel="noopener">+258 850 627 916</a><br />
+        © <span class="year">2026</span> Blue Ocean Residential, Mozambique.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll(".year").forEach(function(el){
+  el.textContent = new Date().getFullYear();
+});
+</script>
+</body>
+</html>
