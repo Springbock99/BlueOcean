@@ -44,20 +44,6 @@
     });
   });
 
-  /* Follow the OS setting only while the visitor has not chosen one. */
-  if (window.matchMedia) {
-    var mq = window.matchMedia("(prefers-color-scheme: dark)");
-    var onChange = function (e) {
-      var stored = null;
-      try {
-        stored = localStorage.getItem(STORAGE_KEY);
-      } catch (err) {}
-      if (!stored) applyTheme(e.matches ? "dark" : "light");
-    };
-    if (mq.addEventListener) mq.addEventListener("change", onChange);
-    else if (mq.addListener) mq.addListener(onChange);
-  }
-
   /* ---------- lazy images fade in as they decode ----------
      Without this, a reveal container fades in while its image is still
      downloading, so you see an empty box appear and then the photo snap

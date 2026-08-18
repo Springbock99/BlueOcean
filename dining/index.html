@@ -12,8 +12,7 @@
   r.classList.add("js");
   try{
     var stored = localStorage.getItem("blueocean-theme");
-    var dark = stored ? stored === "dark"
-                      : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    var dark = stored === "dark";
     if(dark){
       r.setAttribute("data-theme","dark");
       var m = document.querySelector('meta[name="theme-color"]');
