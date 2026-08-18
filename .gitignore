@@ -3,6 +3,7 @@
 .playwright-mcp/
 *.local.*
 node_modules/
+tmp/
 
 # stray screenshots / images at the repo ROOT are scratch.
 # (real image assets go in /assets and are tracked there)
