@@ -63,13 +63,13 @@
      downloading, so you see an empty box appear and then the photo snap
      into it. */
   document.querySelectorAll('img[loading="lazy"]').forEach(function (img) {
-    if (img.complete && img.naturalWidth > 0) return; // already decoded
     img.classList.add("img-fade");
     var done = function () {
       img.classList.add("loaded");
     };
     img.addEventListener("load", done, { once: true });
     img.addEventListener("error", done, { once: true }); // never leave it hidden
+    if (img.complete && img.naturalWidth > 0) done(); // already decoded
   });
 
   var reduced =
@@ -104,6 +104,8 @@
         el.querySelectorAll("img").forEach(function (img) {
           img.setAttribute("loading", "eager");
           img.setAttribute("alt", "");
+          img.classList.remove("img-fade");
+          img.classList.add("loaded");
         });
         return el;
       }
@@ -170,13 +172,39 @@
 
   /* ---------- scroll reveal ---------- */
   var targets = document.querySelectorAll(".reveal");
+  var staggerGroups = document.querySelectorAll("[data-stagger-group]");
+
+  function revealStaggerGroup(group) {
+    group.querySelectorAll(".reveal-card").forEach(function (el, i) {
+      el.style.transitionDelay = Math.min(i * 100, 500) + "ms";
+      el.classList.add("in");
+    });
+  }
 
   if (reduced || !("IntersectionObserver" in window)) {
+    staggerGroups.forEach(function (group) {
+      revealStaggerGroup(group);
+    });
     targets.forEach(function (el) {
       el.classList.add("in");
     });
     return;
   }
+
+  var staggerIo = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        staggerIo.unobserve(entry.target);
+        revealStaggerGroup(entry.target);
+      });
+    },
+    { rootMargin: "0px 0px 12% 0px", threshold: 0.15 }
+  );
+
+  staggerGroups.forEach(function (group) {
+    staggerIo.observe(group);
+  });
 
   var io = new IntersectionObserver(
     function (entries) {
@@ -196,6 +224,7 @@
         // small stagger, capped so a long list never crawls
         el.style.transitionDelay = Math.min(i * 70, 210) + "ms";
         el.classList.add("in");
+        if (el.hasAttribute("data-stagger-group")) revealStaggerGroup(el);
       });
     },
     {
@@ -210,4 +239,36 @@
   targets.forEach(function (el) {
     io.observe(el);
   });
+
+  /* ---------- gentle image parallax ----------
+     Kept intentionally small and transform-only so it reads like tide motion
+     without fighting the content or hurting scroll performance. */
+  var parallaxItems = Array.prototype.slice.call(document.querySelectorAll("[data-parallax]"));
+  if (!parallaxItems.length) return;
+
+  var ticking = false;
+  function updateParallax() {
+    ticking = false;
+    var vh = window.innerHeight || 1;
+    parallaxItems.forEach(function (img) {
+      var rect = img.getBoundingClientRect();
+      if (rect.bottom < -120 || rect.top > vh + 120) return;
+      var strength = parseFloat(img.getAttribute("data-parallax")) || 0.06;
+      var scale = parseFloat(img.getAttribute("data-parallax-scale")) || 1.04;
+      var progress = (rect.top + rect.height / 2 - vh / 2) / vh;
+      var y = Math.max(-26, Math.min(26, progress * -100 * strength));
+      img.style.setProperty("--parallax-scale", scale);
+      img.style.transform = "translate3d(0," + y.toFixed(1) + "px,0) scale(" + scale + ")";
+    });
+  }
+
+  function requestParallax() {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(updateParallax);
+  }
+
+  updateParallax();
+  window.addEventListener("scroll", requestParallax, { passive: true });
+  window.addEventListener("resize", requestParallax);
 })();

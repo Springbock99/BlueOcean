@@ -13,6 +13,7 @@ index.html                    home
 accommodations/index.html     → /accommodations
 dining/index.html             → /dining
 experiences/index.html        → /experiences
+events/index.html             → /events
 contact/index.html            → /contact      (new — the old site had no contact page)
 assets/site.css               all styling (design tokens at the top)
 assets/site.js                theme toggle + scroll reveal
@@ -20,7 +21,8 @@ assets/logo.png               full lockup — master, transparent background
 assets/emblem.png             circular mark — master
 assets/logo.webp              what the pages load (133 KB vs 723 KB)
 assets/emblem.webp            ditto (68 KB vs 368 KB)
-assets/photos/*.webp          23 photos from the old site, resized and recompressed
+assets/photos/*.webp          site photography, resized and recompressed
+assets/videos/*.mp4           event route flyover video assets
 assets/favicon-32.png
 assets/apple-touch-icon.png
 ```
@@ -31,19 +33,9 @@ it, and add a link to the nav and footer of **every** page.
 
 ## Where the content came from
 
-The copy and photography were taken from the existing site. Text that appears
-here is text that appeared there — nothing about the business has been invented.
-
-Where the old site had nothing to say, the gap is marked `[in square brackets]`
-rather than filled with plausible-sounding filler. Find them all with:
-
-```sh
-grep -rn "\[" --include="*.html" .
-```
-
-The **Experiences** page needs the most attention: on the old site it was an
-empty page with only a heading, so its structure here is built around the
-photographs and every description is a placeholder.
+The copy and photography started from the existing site and have been expanded
+with the owner's supplied drone/event imagery. Any details that still need
+operational confirmation are kept general rather than invented.
 
 The old site's stock photos (one Unsplash, one Pexels) were dropped — only your
 own photography was carried over. Some source images are genuinely low
@@ -86,10 +78,9 @@ Fonts in each page's `<head>`; swap the `<link>` and the `--font-display` /
 
 ## Still to do
 
-- **Fill in the `[bracketed]` gaps** — room counts, serving times, the address,
-  and everything on Experiences.
-- **The address and a map.** The old site never said where it is. That is the
-  first thing a guest wants to know.
+- **Room specifics** — confirm room counts, bed configurations and maximum
+  occupancy before publishing detailed accommodation claims.
+- **Map link** — add the preferred Google Maps or GPS link for guest arrivals.
 - **Contact form** — `contact/index.html` posts to Formspree. Create a free form
   at [formspree.io](https://formspree.io) and replace `YOUR_FORM_ID` in the
   `action` attribute. Until then the form sends nothing; the WhatsApp and email

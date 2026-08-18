@@ -42,8 +42,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="assets/site.css" />
-<script src="assets/site.js" defer></script>
+<link rel="stylesheet" href="assets/site.css?v=hero-crop-cleanup" />
+<script src="assets/site.js?v=hero-crop-cleanup" defer></script>
 </head>
 <body>
 
@@ -65,7 +65,8 @@
       <a href="./" aria-current="page">Home</a>
       <a href="accommodations/">Accommodations</a>
       <a href="dining/">Dining</a>
-      <a href="experiences/">Experiences</a>
+      <!-- <a href="experiences/">Experiences</a> -->
+      <a href="events/">Events</a>
       <a href="contact/">Contact</a>
     </nav>
     <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark theme">
@@ -79,14 +80,14 @@
 
   <!-- ---------- HERO ---------- -->
   <section class="hero-photo">
-    <img src="assets/photos/hero-pavilion.webp" alt="The thatched terrace at Blue Ocean Residential, looking out across the dunes to the beach and the Indian Ocean" width="1983" height="793" fetchpriority="high" />
+    <img class="parallax-img" data-parallax="0.12" data-parallax-scale="1.16" src="assets/photos/hero-pavilion.webp" alt="The thatched terrace at Blue Ocean Residential, looking out across the dunes to the beach and the Indian Ocean" width="1983" height="793" fetchpriority="high" />
     <div class="wrap">
-      <p class="label">Residential · Mozambique</p>
-      <h1>A luxury seaside retreat awaits you.</h1>
-      <p class="lede">Exceptional hospitality, exclusive services and breathtaking
+      <p class="label reveal home-fade-up">Residential · Mozambique</p>
+      <h1 class="reveal home-fade-up">A luxury seaside retreat awaits you.</h1>
+      <p class="lede reveal home-fade-up">Exceptional hospitality, exclusive services and breathtaking
         ocean views — for family holidays, quiet getaways and occasions worth
         travelling for.</p>
-      <div class="actions">
+      <div class="actions reveal home-fade-up">
         <a class="btn" href="https://api.whatsapp.com/send/?phone=258850627916" target="_blank" rel="noopener">Book on WhatsApp</a>
         <a class="btn btn-ghost" href="accommodations/">See the rooms</a>
       </div>
@@ -107,7 +108,7 @@
             escapes and special events, all within sight and sound of the ocean.</p>
         </div>
         <figure class="media media-wide reveal">
-          <img src="assets/photos/aerial-estate.webp" alt="Aerial view of Blue Ocean Residential set among coastal dunes above the beach" width="1280" height="959" loading="lazy" />
+          <img class="parallax-img" data-parallax="0.08" src="assets/photos/aerial-estate.webp" alt="Aerial view of Blue Ocean Residential set among coastal dunes above the beach" width="1280" height="959" loading="lazy" />
         </figure>
       </div>
     </div>
@@ -125,11 +126,11 @@
          This holds the ONLY copy of the tiles; site.js clones them until the
          lane is wider than the screen. With JavaScript off you get the tiles
          standing still — which is a fine page. -->
-    <div class="ring reveal">
+    <div class="ring reveal" data-stagger-group>
       <div class="ring-lane ring-near">
         <div class="ring-track">
-          <article class="tile">
-            <img src="assets/photos/room-living.webp" alt="Open-plan living and dining area opening onto a terrace with ocean views" width="570" height="414" loading="lazy" />
+          <article class="tile reveal-card">
+            <img src="assets/photos/exterior-rooms.webp" alt="Guest rooms at Blue Ocean Residential set under thatch" width="1200" height="675" loading="lazy" />
             <div class="tile-body">
               <h3>Ocean view rooms</h3>
               <p>Luxury suites and executive rooms, all designed for comfort, style
@@ -137,8 +138,8 @@
             </div>
           </article>
 
-          <article class="tile">
-            <img src="assets/photos/dining-table.webp" alt="A long table laid with seafood and shared plates under the thatched dining pavilion" width="960" height="1280" loading="lazy" />
+          <article class="tile reveal-card">
+            <img src="assets/photos/dine-with-view-sunset.webp" alt="Sunset over the pool and ocean at Blue Ocean Residential" width="959" height="1280" loading="lazy" />
             <div class="tile-body">
               <h3>Dine with a view</h3>
               <p>Unforgettable meals overlooking the pool and the ocean, from sunrise
@@ -146,7 +147,7 @@
             </div>
           </article>
 
-          <article class="tile">
+          <article class="tile reveal-card">
             <img src="assets/photos/bar.webp" alt="The bar at Blue Ocean Residential, open to the sea" width="1200" height="900" loading="lazy" />
             <div class="tile-body">
               <h3>Cheers to the moment</h3>
@@ -155,7 +156,16 @@
             </div>
           </article>
 
-          <article class="tile">
+          <article class="tile reveal-card">
+            <img src="assets/photos/beach-bar-aerial.webp" alt="Aerial view of the beach bar set among dunes at Blue Ocean Residential" width="1280" height="959" loading="lazy" />
+            <div class="tile-body">
+              <h3>The beach bar</h3>
+              <p>A laid-back dune-side spot for sundowners, music and long coastal
+                afternoons close to the sand.</p>
+            </div>
+          </article>
+
+          <article class="tile reveal-card">
             <img src="assets/photos/live-music.webp" alt="A musician playing live at Blue Ocean Residential" width="960" height="994" loading="lazy" />
             <div class="tile-body">
               <h3>Music that inspires</h3>
@@ -164,39 +174,39 @@
             </div>
           </article>
 
-          <!-- MOCK — placeholder copy, replace before publishing -->
-          <article class="tile">
-            <img src="assets/photos/pool-ocean.webp" alt="The pool looking out over the Indian Ocean" width="1400" height="1443" loading="lazy" />
+          <article class="tile reveal-card">
+            <img src="assets/photos/sunset-pool.webp" alt="The pool area glowing at sunset" width="1200" height="900" loading="lazy" />
             <div class="tile-body">
               <h3>Pool &amp; sundowners</h3>
-              <p class="muted">[Mock — pool hours, the bar, and what happens as the sun goes down.]</p>
+              <p>Ease into the afternoon by the pool, then stay for golden-hour
+                drinks as the light settles over the coast.</p>
             </div>
           </article>
 
-          <!-- MOCK — placeholder copy, replace before publishing -->
-          <article class="tile">
+          <article class="tile reveal-card">
             <img src="assets/photos/boardwalk.webp" alt="Timber boardwalk running through the dunes towards the sea" width="1200" height="675" loading="lazy" />
             <div class="tile-body">
               <h3>Straight to the beach</h3>
-              <p class="muted">[Mock — the walk from the houses through the dunes to the sand.]</p>
+              <p>Follow the boardwalk through coastal dune vegetation and arrive
+                at a wide, quiet stretch of sand.</p>
             </div>
           </article>
 
-          <!-- MOCK — placeholder copy, replace before publishing -->
-          <article class="tile">
+          <article class="tile reveal-card">
             <img src="assets/photos/dining-lobster.webp" alt="Freshly landed crayfish prepared in the kitchen" width="960" height="1280" loading="lazy" />
             <div class="tile-body">
               <h3>Straight off the boat</h3>
-              <p class="muted">[Mock — the catch, and how quickly it reaches the table.]</p>
+              <p>Fresh coastal flavours are part of the rhythm here, from seafood
+                lunches to relaxed dinners under thatch.</p>
             </div>
           </article>
 
-          <!-- MOCK — placeholder copy, replace before publishing -->
-          <article class="tile">
-            <img src="assets/photos/veranda.webp" alt="Covered veranda with a dining table looking over the lawn" width="1197" height="673" loading="lazy" />
+          <article class="tile reveal-card">
+            <img src="assets/photos/home-somewhere-to-sit.webp" alt="A quiet seating spot at Blue Ocean Residential" width="1012" height="1350" loading="lazy" />
             <div class="tile-body">
               <h3>Somewhere to sit</h3>
-              <p class="muted">[Mock — verandas, shade, and the long slow afternoons.]</p>
+              <p>Find a shaded corner, settle into the breeze and let the day move
+                at the pace of the tide.</p>
             </div>
           </article>
         </div>
@@ -210,7 +220,7 @@
       <hr class="rule rule-gap" />
       <div class="split split-reverse">
         <figure class="media media-wide reveal">
-          <img src="assets/photos/exterior-terrace.webp" alt="A row of houses with a shared terrace looking out over the coast" width="1200" height="675" loading="lazy" />
+          <img class="parallax-img" data-parallax="0.07" src="assets/photos/home-houses-sunset-aerial.webp" alt="Aerial view of the accommodation houses above the beach at sunset" width="1600" height="1199" loading="lazy" />
         </figure>
         <div class="reveal">
           <p class="label">Houses</p>
@@ -230,7 +240,7 @@
       <hr class="rule rule-gap" />
       <div class="split">
         <figure class="media media-wide reveal">
-          <img src="assets/photos/dining-lobster.webp" alt="Freshly landed crayfish prepared in the kitchen" width="960" height="1280" loading="lazy" />
+          <img class="parallax-img" data-parallax="0.06" src="assets/photos/dining-lobster.webp" alt="Freshly landed crayfish prepared in the kitchen" width="960" height="1280" loading="lazy" />
         </figure>
         <div class="reveal">
           <p class="label">Food</p>
@@ -248,12 +258,6 @@
   <!-- ---------- GUEST REVIEWS ----------
        Same moving line as the retreat, but slower — reviews are read, not
        glanced at. data-speed is pixels per second; the retreat runs at 26.
-
-       !! The first two are the real reviews from the old site. The four marked
-       "Sample review" are INVENTED placeholders, here only to fill the line out
-       while the design is being worked on. Replace them with real reviews —
-       publishing made-up testimonials misleads customers and is illegal in a
-       lot of places.
 
        This holds the ONLY copy of the quotes; site.js clones them until the
        lane is wider than the screen. With JavaScript off they sit still. -->
@@ -278,34 +282,6 @@
             <p>Our wedding at Blue Ocean Residential was magical, with stunning views and exceptional service that made our day unforgettable. Highly recommend for any special event or getaway.</p>
             <cite>Guest review</cite>
           </blockquote>
-
-          <!-- SAMPLE — invented, replace before publishing -->
-          <blockquote class="quote">
-            <div class="stars" aria-label="Five out of five stars">★★★★★</div>
-            <p>We came for four nights and stayed for seven. The house was spotless, the staff could not have been kinder, and the beach was our own most mornings.</p>
-            <cite>Sample review</cite>
-          </blockquote>
-
-          <!-- SAMPLE — invented, replace before publishing -->
-          <blockquote class="quote">
-            <div class="stars" aria-label="Five out of five stars">★★★★★</div>
-            <p>Best seafood we have eaten anywhere. The crayfish came off the boat that afternoon and was on the table by seven.</p>
-            <cite>Sample review</cite>
-          </blockquote>
-
-          <!-- SAMPLE — invented, replace before publishing -->
-          <blockquote class="quote">
-            <div class="stars" aria-label="Five out of five stars">★★★★★</div>
-            <p>Travelled with two small children and it was effortless — space to run around, a pool they never wanted to leave, and food that suited everyone.</p>
-            <cite>Sample review</cite>
-          </blockquote>
-
-          <!-- SAMPLE — invented, replace before publishing -->
-          <blockquote class="quote">
-            <div class="stars" aria-label="Five out of five stars">★★★★★</div>
-            <p>Quiet, unhurried and genuinely beautiful. We spent every evening on the deck watching the sun go down over the water.</p>
-            <cite>Sample review</cite>
-          </blockquote>
         </div>
       </div>
     </div>
@@ -318,7 +294,7 @@
 <!-- The closing words now live inside the photograph rather than on the
      band above it — this is where the page has been heading all along. -->
 <footer class="site-footer">
-  <div class="wrap footer-closing reveal">
+  <div class="wrap footer-closing reveal reveal-scale">
     <p class="label">Come and stay</p>
     <h2 style="margin-bottom:22px">The day ends here.</h2>
     <p class="lede">Message us on WhatsApp or send an email and we will come back to
@@ -342,7 +318,8 @@
         <a href="./">Home</a>
         <a href="accommodations/">Accommodations</a>
         <a href="dining/">Dining</a>
-        <a href="experiences/">Experiences</a>
+        <!-- <a href="experiences/">Experiences</a> -->
+        <a href="events/">Events</a>
         <a href="contact/">Contact</a>
       </nav>
       <p class="footer-legal">
