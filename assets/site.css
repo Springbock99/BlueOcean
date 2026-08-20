@@ -214,7 +214,8 @@ section{ padding-block:var(--gap); }
 }
 .nav{ display:flex; align-items:center; gap:20px; height:76px; }
 .brand{ display:flex; align-items:center; gap:12px; margin-right:auto; }
-.brand img{ width:44px; height:auto; }
+.brand img{ width:44px; height:auto; transition:filter .25s var(--ease); }
+[data-theme="dark"] .brand img{ filter:brightness(0) invert(1); }
 .brand-text{ display:flex; flex-direction:column; line-height:1; }
 .brand-name{
   font-family:var(--font-display); font-weight:500;
@@ -879,7 +880,8 @@ figcaption{
 }
 /* the emblem beside the wordmark, the way the header carries it */
 .footer-brand{ display:flex; align-items:center; gap:16px; }
-.footer-brand img{ width:74px; height:auto; flex:0 0 auto; }
+.footer-brand img{ width:74px; height:auto; flex:0 0 auto; transition:filter .25s var(--ease); }
+[data-theme="dark"] .footer-brand img{ filter:brightness(0) invert(1); }
 .footer-wordmark{ display:flex; flex-direction:column; line-height:1.1; }
 .footer-wordmark b{
   font-family:var(--font-display); font-weight:400;
